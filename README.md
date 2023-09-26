@@ -6,7 +6,7 @@
 간단한 단답형 문제풀이가 가능한 사이트를 제작
 - 개발 기간: 2일
 - 인원: 1명(혼자)
-- 개발 환경: windows 11, java 11, mysql, vscode, chrome, eclipse, spring boot(2.7.9)
+- 개발 환경: windows 11, java 11, mysql, vscode, chrome, eclipse, spring boot(2.7.9, thymeleaf)
 
 ## 사용자
 - 랜덤한 문제 선택해서 풀기
