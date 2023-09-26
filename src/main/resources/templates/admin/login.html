@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+    <main>
+        <form action = "login_proc" method = "post">
+            <p>ID</p>
+            <input type = "text" th:name = "id" value = "admin01">
+            <p>PW</p>
+            <input type = "password" th:name = "pw" value = "1234">
+            <input type = "submit" value = "로그인">
+        </form>
+    </main>
+</th:block>
+</html>

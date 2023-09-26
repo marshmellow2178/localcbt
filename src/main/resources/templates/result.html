@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+    <main>
+        <div class = "result">
+            <p th:text="${answer}"></p>
+            <a href="question" class="link">다음 문제</a>
+        </div>
+        <a href="index" class="link">그만하기</a>
+    </main>
+</th:block>
+</html>

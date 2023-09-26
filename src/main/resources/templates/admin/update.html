@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+    <main>
+        <form action = "update_proc" method = "post">
+            <input type = "hidden" name = "idx" th:value = "${question.idx}">
+            <p>문제</p>
+            <textarea name = "question" required th:text = "${question.question}">
+            </textarea>
+            <p>정답</p>
+            <input type = "text" name = "answer" required th:value = "${question.answer}">
+            <input type = "submit" value = "제출">
+        </form>
+    </main>
+</th:block>
+</html>
