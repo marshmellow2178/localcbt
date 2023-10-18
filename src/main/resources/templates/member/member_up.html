@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout/mypage_layout">
+<th:block layout:fragment="content">
+        <form action = "/localcbt/mypage/update_proc" method="post">
+        	<input type = "hidden" name = "idx" th:value = "${session.logininfo.idx}">
+            <div class="mb-3 row">
+                <label for="id" class="col-sm-2 col-form-label">ID</label>
+                <div class="col-sm-10 w-25">
+                <input type="text" class="form-control" name="id" th:value="${session.logininfo.id}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-2 col-form-label">이름</div>
+                <div class="col-sm-10" th:text = "${session.logininfo.name}"></div>
+            </div>
+            <div class="mb-3 row">
+                <label for="email" class="col-sm-2 col-form-label">이메일</label>
+                <div class="col-sm-10 input-group w-50">
+                <input type="text" class="form-control" name="email" th:value="${session.logininfo.email}">
+                <span class="input-group-text">@</span>
+                <select name="domain" class="form-select">
+                    <option th:each = "domain: ${dList}" th:value="${domain.name}" th:text = "${domain.name}"
+                    	th:selected = "${#strings.equals(domain.name, session.logininfo.domain)}"></option>
+                </select>
+                 <span class="input-group-text">.com</span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="id" class="col-sm-2 col-form-label">연락처</label>
+                <div class="col-sm-10 input-group w-25">
+                    <span class="input-group-text">010</span>
+                    <input type="number" class="form-control" name="phone" th:value="${session.logininfo.phone}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-2 col-form-label">가입일</div>
+                <div class="col-sm-10" th:text = "${#temporals.format(session.logininfo.joindate, 'yy-MM-dd')}"></div>
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="수정">
+            </div>
+        </form>
+</html>

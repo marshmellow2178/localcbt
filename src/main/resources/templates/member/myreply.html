@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/mypage_layout">
+<th:block layout:fragment="content">
+	<table class="table table-bordered">
+		<tr>
+			<th>내용</th>
+			<th>작성일</th>
+		</tr>
+		<tr th:each="reply : ${frList}">
+			<td width=60%><a th:href="@{/localcbt/free/view(idx=${reply.bidx})}"
+				th:text="${reply.content}"></a></td>
+			<td th:text="${#temporals.format(reply.date, 'MM-dd HH:mm')}"></td>
+		</tr>
+	</table>
+</th:block>
+</html>

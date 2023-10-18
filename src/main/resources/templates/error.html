@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="layout/default_layout">
+layout:decorate="layout/error_layout">
 <th:block layout:fragment="content">
     <main>
         <h1>무엇인가 잘못되었습니다</h1>
-        <a th:href = "@{/index}">홈으로</a>
+        <button onclick = "history.back();">이전으로</button>
     </main>
 </th:block>
 </html>

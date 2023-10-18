@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout/mypage_layout">
+<th:block layout:fragment="content">
+        <table class="table">
+        	<tr class="table-light">
+        		<th>과목</th>
+        		<th>점수</th>
+        		<th>일자</th>
+        	</tr>
+        	<tr th:unless = "${#lists.isEmpty(results)}" th:each = "result : ${results}">
+        		<td th:text = "${testinfo[result.tidx - 1].name}"></td>
+        		<td th:text = "${result.correct} + '/' + ${result.pcount}"></td>
+        		<td th:text = "${#temporals.format(result.date, 'yy-MM-dd')}"></td>
+        	</tr>
+        	<tr th:if = "${#lists.isEmpty(results)}">
+        		<td colspan = 3 th:text = "${'시험 결과가 없습니다'}"></td>
+        	</tr>
+        </table>
+</th:block>
+</html>

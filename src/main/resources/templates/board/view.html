@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout/default_layout">
+<th:block layout:fragment="content">
+	<main>
+		<article class="boardcontent">
+			<h3 th:text="${boardfree.title}"></h3>
+			<p th:text="${boardfree.mid} + ' | '+${#temporals.format(boardfree.date, 'yyyy-MM-dd HH:mm:ss')}">
+			<div th:text="${boardfree.content}"></div>
+			<a th:if="${boardfree.midx} == ${session.logininfo.idx}"
+				th:href="@{update_form(idx=${boardfree.idx})}" class="btn btn-primary">수정</a> 
+			<a th:if="${boardfree.midx} == ${session.logininfo.idx}"
+				th:href="@{del(bidx=${boardfree.idx})}" class="btn btn-danger">삭제</a>
+		</article>
+		<table class = "table">
+			<tr th:each="reply : ${frList}">
+				<th th:text="${reply.mid}" width=10%></th>
+				<td>
+					<span th:text="${reply.content}"></span>&nbsp;
+					<a th:if="${reply.midx} == ${session.logininfo.idx}" class = "activate"
+					th:href = "@{reply_del(bidx=${boardfree.idx}, ridx=${reply.idx})}" >삭제</a>
+				</td>
+			</tr>
+			<tr th:if="${session.logininfo} != null" >
+				<th th:text= "${session.logininfo.id}" width=10%></th>
+				<td>
+					<form action="reply" method="post">
+						<input type="hidden" name="bidx" th:value="${boardfree.idx}">
+						<input type="text" name="content" class = "form-control w-100">
+					</form>
+				</td>
+			</tr>
+			<tr th:unless="${session.logininfo} != null">
+				<th colspan = 2>댓글을 달려면 로그인하세요</th>
+			</tr>
+		</table>
+	</main>
+
+</th:block>
+</html>

@@ -1,56 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="layout/default_layout">
+layout:decorate="layout/admin_layout">
 <th:block layout:fragment="content">
-    <main>
-        <table>
-            <tr>
-                <th>문제</th>
-                <th>정답</th>
-                <th>관리</th>
-            </tr>
-            <tr th:each="question : ${qList}">
-                <td th:text = "${question.question}" width = 60%></td>
-                <td th:text = "${question.answer}"></td>
-                <td>
-                	<a th:href = "@{/update_form(idx=${question.idx})}" class = "link">수정</a>
-                </td>
-            </tr>
-        </table>
-        <a href = register_form class = "link">등록</a>
-        
-        <div class = "paging">
-        	<span th:if="${pageinfo.cpage>1}">
-        		<a th:href="@{/list(page=1)}">처음</a>
-        	</span>
-        	<span th:unless="${pageinfo.cpage>1}">처음</span>
-    	  	<span th:if="${pageinfo.cpage>1}">
-        		<a th:href="@{/list(page=${pageinfo.cpage-1})}">이전</a>
-        	</span>
-        	<span th:unless="${pageinfo.cpage>1}">이전</span>
-        	
-        	<th:block th:each="num:${#numbers.sequence(pageinfo.spage, (pageinfo.spage+pageinfo.bsize-1 > pageinfo.pcnt) ? 
-        	pageinfo.pcnt : pageinfo.spage+pageinfo.bsize-1)}">
-        		<span th:if="${pageinfo.cpage != num}">
-        			<a th:href = "@{/list(page=${num})}" th:text="${num}"></a>
-        		</span>
-        		<span th:unless ="${pageinfo.cpage != num}" th:text="${num}" class = "cpage"></span>
-        	</th:block>
-        	
-			<span th:if="${pageinfo.cpage < pageinfo.pcnt}">
-        		<a th:href="@{/list(page=${pageinfo.cpage+1})}">다음</a>
-        	</span>
-        	<span th:unless="${pageinfo.cpage < pageinfo.pcnt}">
-        		다음
-        	</span>
-        	<span th:if="${pageinfo.cpage < pageinfo.pcnt}">
-        		<a th:href="@{/list(page=${pageinfo.pcnt})}">마지막</a>
-        	</span>
-        	<span th:unless="${pageinfo.cpage < pageinfo.pcnt}">
-        		마지막
-        	</span>
-        </div>
+   <main>
+   		<th:block th:if = "${#lists.size(pList)>0}">
+   		<ol  class = "exam">
+        	<li th:each = "problem : ${pList}">
+        		<p th:text = "${problem.question}"></p>
+        		<p th:text = "${problem.answer}" class = "answer"></p>
+        		<a th:href = "@{/update_form(pidx = ${problem.idx})}" class = "activate">수정하기</a>
+        	</li>
+       	</ol>
+       	<a th:href = "@{/register_form(tidx = ${tidx})}" class = "activate">추가하기</a>
+       	</th:block>
+   		<a th:unless = "${#lists.size(pList)>0}" href = "index" th:text = "${'가능한 문제가 없습니다.'}"></a>
     </main>
 </th:block>
 </html>
