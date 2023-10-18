@@ -1,12 +1,12 @@
 # localcbt
-나만의 단답형 문제 은행
-http://34.22.65.82:8080/localcbt/index
+> 나만의 단답형 문제 은행
+> http://34.22.65.82:8080/localcbt/index
 
 ## 개요
 - 기획: 자격증 공부를 하면서 개념 암기를 위한 단답형 문제풀이의 필요성을 느끼고
 간단한 단답형 문제풀이가 가능한 사이트를 제작
 - 개발 기간: 2일
-- 인원: 1명(혼자)
+- 인원: 1명
 - 개발 환경: windows 11, java 11, mysql, vscode, chrome, eclipse, spring boot(2.7.9, thymeleaf)
 
 ## 사용자
@@ -24,6 +24,7 @@ http://34.22.65.82:8080/localcbt/index
 ![image](https://github.com/marshmellow2178/localcbt/assets/115971843/11741b43-53b2-455e-b29b-8d0cf2d77786)
 
 ## UPDATE 10-18
+- 기간: 5일
 - bootstrap 디자인 적용
 - google cloud 호스팅
 
