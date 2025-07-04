@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+<main layout:fragment="content">
+	<h3>문제 목록</h3>
+	<a href="/problem/create">새 문제 등록</a>
+	<a href="/problem/random">랜덤 문제 풀기</a>
+	<table>
+		<tr>
+			<th>문제</th>
+			<th>작성일</th>
+		</tr>
+		<tr th:each="problem: ${problemPage}">
+			<td>
+				<a th:href="@{|/problem/${problem.id}|}"
+				   th:text="${problem.question}"></a>
+			</td>
+			<td th:text="${#temporals.format(problem.createdAt, 'yyyy-MM-dd')}"></td>
+		</tr>
+	</table>
+
+	<ul class="pagination">
+		<li th:if="${problemPage.hasPrevious()}">
+			<a th:href="@{/problem/list(page=${problemPage.number - 1})}">이전</a>
+		</li>
+		<li th:each="i : ${#numbers.sequence(0, problemPage.totalPages - 1)}"
+			th:classappend="${i == problemPage.number} ? 'active'">
+			<a th:href="@{/problem/list(page=${i})}" th:text="${i + 1}"></a>
+		</li>
+		<li th:if="${problemPage.hasNext()}">
+			<a th:href="@{/problem/list(page=${problemPage.number + 1})}">다음</a>
+		</li>
+	</ul>
+</main>
+</html>
