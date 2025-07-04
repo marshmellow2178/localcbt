@@ -4,23 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" th:href="${#httpServletRequest.getContextPath()}+'/css/index.css'">
+    <link rel = "stylesheet" href="../css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
 <body>
     <header>
-        <figure><a href = "/localcbt/index">
-            <img th:src="${#httpServletRequest.getContextPath()}+'/img/logo.png'" class="img-thumbnail">
+        <figure class = "logo"><a href = "../admin">
+            <img src="../img/logo.png">
         </a></figure>
-        <h1>나만의 문제은행</h1>
-        <nav class="nav">
-        	<a class="nav-link" th:if = "${session.logininfo == null}" href = "/localcbt/login">로그인</a>
-        	<a class="nav-link" th:unless = "${session.logininfo == null}" href = "/localcbt/logout">로그아웃</a>
-        	<a class="nav-link" href = "/localcbt/free">자유게시판</a>
-        	<a class="nav-link" href = "/localcbt/mypage">마이페이지</a>
+        <h1>나만의 문제은행: 관리자</h1>
+        <nav>
+        	<a th:if = "${session.admininfo == null}" href = "admin">로그인</a>
+        	<a th:unless = "${session.admininfo == null}" href = "logout">로그아웃</a>
         </nav>
     </header>
 </th:block>
