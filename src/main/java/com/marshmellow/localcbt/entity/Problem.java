@@ -1,12 +1,13 @@
 package com.marshmellow.localcbt.entity;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -25,10 +26,13 @@ public class Problem {
 	@Column(name = "answer")
 	private String answer;
 
-	public Problem create(String question, String answer) {
+	private LocalDateTime createdAt;
+
+	public static Problem create(String question, String answer) {
 		Problem problem = new Problem();
 		problem.question = question;
 		problem.answer = answer;
+		problem.createdAt = LocalDateTime.now();
 		return new Problem();
 	}
 	
