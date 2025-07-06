@@ -1,5 +1,6 @@
 package com.marshmellow.localcbt.controller;
 
+import com.marshmellow.localcbt.entity.Problem;
 import com.marshmellow.localcbt.service.ProblemService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -40,12 +41,12 @@ public class ProblemCtrl {
 	}
 
 	@GetMapping("/create")
-	public String create(){
+	public String showCreateFrom(){
 		return "register";
 	}
 
 	@PostMapping("/create")
-	public String create(
+	public String postCreateForm(
 			@RequestParam String question,
 			@RequestParam String answer
 	){
@@ -55,13 +56,14 @@ public class ProblemCtrl {
 
 	@PostMapping("/check")
 	public String check(
-			@RequestParam String answer,
+			@RequestParam long id,
 			@RequestParam String input,
 			Model model
 	){
-			model.addAttribute("result", problemService.checkAnswer(answer, input));
-			model.addAttribute("answer", answer);
-			return "result";
+		Problem p = problemService.getProblemById(id);
+		model.addAttribute("result", problemService.checkAnswer(p.getAnswer(), input));
+		model.addAttribute("answer", p.getAnswer());
+		return "result";
 	}
 }
 

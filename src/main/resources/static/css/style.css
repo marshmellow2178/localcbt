@@ -1,42 +1,8 @@
-/*common*/
 @charset "utf-8";
-img {
-	width: 100%;
-}
 
-header {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	width: 70%;
-	height: 100px;
-	margin: 10px auto;
-}
-header figure{
-	width: 80px;
-}
-header nav{
-	width: 40%;
-}
-
-.pagination {
-	list-style: none;
-	display: flex;
-	gap: 10px;
-	padding-left: 0;
-	justify-content: center;
-}
-
-.pagination li a {
-	padding: 4px 8px;
-	text-decoration: none;
-	border: 1px solid #ccc;
-	color: #333;
-	border-radius: 4px;
-}
-
-.pagination li.active a {
-	background-color: #eee;
-	font-weight: bold;
+.question-cell {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 400px; /* 숫자는 필요에 따라 조정 */
 }

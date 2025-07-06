@@ -3,15 +3,26 @@
       xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="layout">
-<th:block layout:fragment="content">
-    <main>
-        <form action = "/login" method = "post">
-            <label>ID</label>
-            <input type = "text" name = "username" value = "user">
-            <label>PW</label>
-            <input type = "password" name = "password" value = "1234">
-            <input type = "submit" value = "로그인">
-        </form>
-    </main>
-</th:block>
+<main layout:fragment="content">
+    <div th:if="${param.error}" class="alert alert-danger">
+        로그인 정보가 올바르지 않습니다.
+    </div>
+    <form th:action = "@{/login}" method = "post">
+        <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type = "text" name = "username" value = "user"
+                   required
+                class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">PW</label>
+            <input type = "password" name = "password" value = "1234"
+                   required
+            class="form-control">
+        </div>
+
+        <input type = "submit" value = "로그인"
+        class="btn btn-primary w-100">
+    </form>
+</main>
 </html>

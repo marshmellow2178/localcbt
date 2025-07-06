@@ -6,7 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.marshmellow.localcbt.entity.Problem;
 
+import java.util.Optional;
+
 public interface ProblemRepository extends JpaRepository<Problem, Long>{
-    Problem findById(long id);
-    Page<Problem> findAll(Pageable pageable);
+    Optional<Problem> findById(long id);
+    boolean existsById(long id);
+
+    //제목으로 찾기
+    //List<Problem> findByQuestionContaining(String keyword);
 }

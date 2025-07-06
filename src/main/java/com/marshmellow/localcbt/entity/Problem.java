@@ -1,8 +1,6 @@
 package com.marshmellow.localcbt.entity;
 import jakarta.persistence.*;
 
-import org.hibernate.annotations.DynamicUpdate;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@DynamicUpdate
 @Table(name = "problem")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Problem {
@@ -20,20 +17,25 @@ public class Problem {
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "question")
+	@Column(name = "question", nullable = false)
 	private String question;
 
-	@Column(name = "answer")
+	@Column(name = "answer", nullable = false)
 	private String answer;
 
+	@Column(name="created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
+
+	@PrePersist
+	public void prePersist() {
+		this.createdAt = LocalDateTime.now();
+	}
 
 	public static Problem create(String question, String answer) {
 		Problem problem = new Problem();
 		problem.question = question;
 		problem.answer = answer;
-		problem.createdAt = LocalDateTime.now();
-		return new Problem();
+		return problem;
 	}
 	
 	public void update(String question, String answer) {
