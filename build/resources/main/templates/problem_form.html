@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="layout">
+<main layout:fragment="content">
+	<form th:action = "${problemForm.id}!=null ? '/problem/update' : '/problem/create'"
+		  th:object="${problemForm}"
+		  method="post">
+		<input type="hidden" th:field="*{id}">
+
+		<div class="mb-3">
+			<label>문제</label>
+			<input type = "text" th:field="*{question}"  required
+				   class="form-control">
+			<div th:if="${#fields.hasErrors('question')}"
+				 th:errors="*{question}"
+				 class="text-danger"></div>
+		</div>
+
+		<div class="mb-3">
+			<label>정답</label>
+			<input type = "text" th:field="*{answer}" required
+				   class="form-control">
+			<div th:if="${#fields.hasErrors('answer')}"
+				 th:errors="*{answer}"
+				 class="text-danger"></div>
+		</div>
+
+		<input type = "submit"
+			   th:value = "${problemForm.id} != null ? '수정' : '등록'"
+			   class="btn btn-primary">
+	</form>
+</main>
+</html>
