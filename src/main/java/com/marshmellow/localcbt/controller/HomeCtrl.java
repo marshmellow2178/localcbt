@@ -19,9 +19,6 @@ public class HomeCtrl{
 			@AuthenticationPrincipal UserDetails userDetails,
 			Model model
 			) {
-		if(userDetails == null){
-			return "redirect:/login";
-		}
 		return "redirect:/problem/list";
 	}
 

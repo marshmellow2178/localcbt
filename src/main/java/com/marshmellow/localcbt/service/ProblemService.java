@@ -41,6 +41,11 @@ public class ProblemService {
         return problemRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
+    public Page<Problem> findByKeyword(Pageable pageable, String keyword){
+        return problemRepository.findByQuestionContaining(pageable, keyword);
+    }
+
     @Transactional
     public long createProblem(String question, String answer) {
         Problem problem = Problem.create(question, answer);
@@ -48,7 +53,21 @@ public class ProblemService {
         return problem.getId();
     }
 
+    @Transactional
+    public long updateProblem(Long id, String question, String answer) {
+        Problem problem = problemRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Problem with id: " + id + " not found"));
+        problem.update(question, answer);
+        problemRepository.save(problem);
+        return problem.getId();
+    }
+
+    @Transactional
+    public void deleteProblem(Long id) {
+        problemRepository.deleteById(id);
+    }
+
     public boolean checkAnswer(String answer, String input){
-        return answer.equals(input);
+        input = input.trim();
+        return answer.equalsIgnoreCase(input);
     }
 }

@@ -26,6 +26,9 @@ public class Problem {
 	@Column(name="created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
 
+	@Column(name = "modified_at")
+	private LocalDateTime modifiedAt;
+
 	@PrePersist
 	public void prePersist() {
 		this.createdAt = LocalDateTime.now();
@@ -41,6 +44,7 @@ public class Problem {
 	public void update(String question, String answer) {
 		this.question = question;
 		this.answer = answer;
+		this.modifiedAt = LocalDateTime.now();
 	}
 
 }

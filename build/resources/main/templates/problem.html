@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="layout">
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="layout">
 <main layout:fragment="content">
 	<section>
 		<h3>문제</h3>
-		<b th:text="${problem.question}"></b>
 
+		<b th:text="${problem.question}"></b>
 		<form action="/problem/check" method="post">
 			<input type="hidden" th:value="${problem.id}" name="id">
 			<input type="text" placeholder="정답을 입력하세요" name="input"
@@ -14,6 +16,19 @@ layout:decorate="layout">
 			<input type="submit" value="정답 확인"
 			class="btn btn-success">
 		</form>
+		<div sec:authorize="isAuthenticated()"
+			class="d-flex gap-2 mt-3">
+			<a th:href="@{|/problem/update/${problem.id}|}"
+			   class="btn btn-warning">수정</a>
+			<form th:action="@{/problem/delete}" method="post">
+				<input type="hidden" th:value="${problem.id}" name="id">
+				<input type="submit" class="btn btn-danger"
+					   onclick="return confirm('정말 삭제하시겠습니까?');"
+					   value="삭제">
+			</form>
+		</div>
 	</section>
+
+
 </main>
 </html>
