@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.marshmellow.localcbt.service.ProblemServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-07-08T08:46:48.681Z" hostname="LAPTOP-UDT9BB0H" time="1.243">
+<testsuite name="com.marshmellow.localcbt.service.ProblemServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-07-08T12:22:10.511Z" hostname="LAPTOP-UDT9BB0H" time="1.237">
   <properties/>
-  <testcase name="checkAnswer()" classname="com.marshmellow.localcbt.service.ProblemServiceTest" time="1.243"/>
+  <testcase name="checkAnswer()" classname="com.marshmellow.localcbt.service.ProblemServiceTest" time="1.237"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
